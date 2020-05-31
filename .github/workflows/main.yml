@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Rubocop
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  backend-linting:
+    runs-on: ubuntu-latest
+    name: Backend Linting
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Hello world action step
+        uses: shivtej1505/hello-github-action@v2
+        id: hello
+      # Use the output from the `hello` step
+      - name: Checks
+        run: echo "Output ${{ steps.hello.outputs }}"
