@@ -1,8 +1,3 @@
-# Container image that runs your code
-FROM alpine:3.10
-
-# Copies your code file from your action repository to the filesystem path `/` of the container
-COPY entrypoint.sh /entrypoint.sh
-
-# Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["/entrypoint.sh"]
+FROM ruby:2.3
+RUN gem install rubocop -v '0.81.0' && gem install rubocop-rails -v '2.4.2'
+CMD rubocop --format offenses app/services
